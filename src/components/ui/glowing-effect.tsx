@@ -5,7 +5,6 @@ interface GlowingEffectProps {
   spread?: number
   glow?: boolean
   disabled?: boolean
-  proximity?: number
   inactiveZone?: number
   movementDuration?: number
   borderWidth?: number
@@ -18,7 +17,6 @@ export function GlowingEffect({
   spread = 20,
   glow = false,
   disabled = true,
-  proximity = 0,
   inactiveZone = 0.7,
   movementDuration = 2,
   borderWidth = 2,

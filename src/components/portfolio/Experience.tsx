@@ -39,7 +39,6 @@ function GridItem({ area, icon, title, description, children }: GridItemProps) {
         spread={40}
         glow={true}
         disabled={false}
-        proximity={64}
         inactiveZone={0.01}
       >
         <div className="flex h-full flex-col justify-between gap-4 p-6">
