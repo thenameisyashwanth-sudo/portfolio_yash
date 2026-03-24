@@ -7,12 +7,30 @@ import { Card, CardContent } from '@/components/ui/card'
 
 const projects = [
   {
+    title: 'UrbanShield - Smart City Safety & Traffic Intelligence Platform',
+    description:
+      'Full-stack smart-city platform unifying traffic monitoring, emergency response, and citizen safety with real-time WebSocket updates, Silent SOS, and Safe Travel escalation workflows.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+    tags: ['React', 'FastAPI', 'WebSockets', 'Firebase', 'SQLAlchemy', 'Leaflet', 'OpenStreetMap'],
+    github: 'https://github.com/thenameisyashwanth-sudo/portfolio_yash.git',
+    live: 'https://urbansheild.vercel.app',
+  },
+  {
+    title: 'FareSplit - AI-Powered Expense Splitting Platform',
+    description:
+      'Full-stack group expense platform for shared trips with Google auth, real-time balances, optimized debt settlements, and extensible AI workflows for OCR, voice input, and categorization.',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+    tags: ['React', 'Vite', 'TailwindCSS', 'Firebase', 'Node.js', 'Express', 'Framer Motion', 'Recharts'],
+    github: 'https://github.com/thenameisyashwanth-sudo/faresplit',
+    live: 'https://faresplit-rose.vercel.app',
+  },
+  {
     title: 'MovieHunt',
     description: 'Movie discovery web app built using React and APIs. Browse and explore movies with a clean, responsive interface.',
     image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=600&fit=crop',
     tags: ['React', 'APIs'],
     github: 'https://github.com/thenameisyashwanth-sudo',
-    live: null,
+    live: 'https://moviehunt-theta.vercel.app/',
   },
 ]
 

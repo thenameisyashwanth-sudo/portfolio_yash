@@ -3,7 +3,6 @@ import Hero from '@/components/portfolio/Hero'
 import ScrollRevealEffects from '@/components/portfolio/ScrollRevealEffects'
 import About from '@/components/portfolio/About'
 import Projects from '@/components/portfolio/Projects'
-import ThreeDMarqueeSection from '@/components/portfolio/ThreeDMarqueeSection'
 import Experience from '@/components/portfolio/Experience'
 import Contact from '@/components/portfolio/Contact'
 import Footer from '@/components/portfolio/Footer'
@@ -16,7 +15,6 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
-      <ThreeDMarqueeSection />
       <Experience />
       <Contact />
       <Footer />

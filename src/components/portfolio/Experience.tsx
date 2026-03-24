@@ -41,8 +41,8 @@ function GridItem({ area, icon, title, description, children }: GridItemProps) {
         disabled={false}
         inactiveZone={0.01}
       >
-        <div className="flex h-full flex-col justify-between gap-4 p-6">
-          <div className="flex flex-1 flex-col justify-between gap-3">
+        <div className="flex h-full flex-col gap-4 p-6">
+          <div className="flex flex-1 flex-col gap-3">
             <div className="w-fit rounded-lg border border-slate-200 bg-slate-50/80 p-2 dark:border-slate-600 dark:bg-slate-800/50">
               {icon}
             </div>
