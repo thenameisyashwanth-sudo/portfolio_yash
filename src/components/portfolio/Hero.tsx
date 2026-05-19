@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Instagram, ArrowDown } from 'lucide-react'
+import { Github, Linkedin, Instagram, ArrowDown, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { downloadResume } from '@/lib/resume'
 import Hero3DBackground from './Hero3DBackground'
 
 const socials = [
@@ -93,6 +94,14 @@ export default function Hero() {
               onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Work
+            </Button>
+            <Button
+              variant="outline"
+              className="border-slate-500 bg-transparent text-white hover:bg-slate-800 hover:text-white rounded-full px-8"
+              onClick={downloadResume}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download CV
             </Button>
           </motion.div>
 

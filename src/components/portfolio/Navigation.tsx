@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Download } from 'lucide-react'
+import { downloadResume } from '@/lib/resume'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 
@@ -57,6 +58,14 @@ export default function Navigation() {
               </button>
             ))}
             <Button
+              variant="outline"
+              className="border-slate-500 bg-transparent text-white hover:bg-slate-800 hover:text-white rounded-full"
+              onClick={downloadResume}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download CV
+            </Button>
+            <Button
               className="bg-orange-500 hover:bg-orange-600 rounded-full"
               onClick={() => scrollTo('#contact')}
             >
@@ -94,6 +103,14 @@ export default function Navigation() {
                 {link.label}
               </button>
             ))}
+            <Button
+              variant="outline"
+              className="border-slate-500 bg-transparent text-white hover:bg-slate-800 hover:text-white rounded-full px-8"
+              onClick={downloadResume}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download CV
+            </Button>
             <Button
               className="bg-orange-500 hover:bg-orange-600 rounded-full px-8"
               onClick={() => scrollTo('#contact')}

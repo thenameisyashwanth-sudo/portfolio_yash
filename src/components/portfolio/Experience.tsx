@@ -5,6 +5,16 @@ import { Badge } from '@/components/ui/badge'
 
 const experiences = [
   {
+    title: 'Summer Research Intern',
+    company: 'NIT Warangal',
+    location: 'Warangal, Telangana',
+    period: 'May 2026 – Jul 2026 · Ongoing',
+    description:
+      'May 2026 – Jul 2026 (ongoing). Machine learning research under Prof. Manish Kumar Bajpai, working on thermal imaging and image reconstruction.',
+    skills: ['Machine Learning', 'Thermal Imaging', 'Image Reconstruction', 'Python'],
+    current: true,
+  },
+  {
     title: 'Web Development Intern',
     company: 'VaultofCodes',
     location: 'Remote',
@@ -91,7 +101,10 @@ export default function Experience() {
             title={experiences[0].title + ' · ' + experiences[0].company}
             description={experiences[0].description}
           >
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              {experiences[0].current && (
+                <Badge className="bg-orange-500/10 text-orange-600 dark:text-orange-400">Ongoing</Badge>
+              )}
               {experiences[0].skills.map((skill) => (
                 <Badge key={skill} variant="secondary" className="text-slate-600 dark:text-slate-400">
                   {skill}
@@ -118,9 +131,17 @@ export default function Experience() {
           <GridItem
             area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
             icon={<Code2 className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
-            title="Full-Stack & Machine Learning"
-            description="Building web applications with React, Node, and exploring ML. Focus on clean architecture and scalable solutions."
-          />
+            title={experiences[2].title + ' · ' + experiences[2].company}
+            description={experiences[2].description}
+          >
+            <div className="flex flex-wrap gap-2">
+              {experiences[2].skills.map((skill) => (
+                <Badge key={skill} variant="secondary" className="text-slate-600 dark:text-slate-400">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </GridItem>
 
           <GridItem
             area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
