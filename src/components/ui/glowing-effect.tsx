@@ -73,14 +73,14 @@ export function GlowingEffect({
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('relative h-full w-full rounded-2xl md:rounded-3xl', className)}
+      className={cn('relative w-full rounded-2xl md:rounded-3xl', className)}
       style={{
         padding: `${borderWidth}px`,
         background: showGlow ? gradientStyle : 'transparent',
         transition: `background ${movementDuration * 0.2}s ease-out`,
       }}
     >
-      <div className="relative h-full w-full overflow-hidden rounded-xl md:rounded-2xl border border-slate-200/80 bg-white shadow-[0px_0px_27px_0px_rgba(0,0,0,0.06)] dark:bg-slate-900 dark:border-slate-700/50 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+      <div className="relative w-full overflow-hidden rounded-xl md:rounded-2xl border border-slate-200/80 bg-white shadow-[0px_0px_27px_0px_rgba(0,0,0,0.06)] dark:bg-slate-900 dark:border-slate-700/50 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
         {children}
       </div>
     </div>

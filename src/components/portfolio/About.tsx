@@ -11,17 +11,18 @@ const infoCards = [
 ]
 
 const skills = [
-  { name: 'JavaScript', level: 90 },
-  { name: 'React', level: 85 },
-  { name: 'Python', level: 88 },
-  { name: 'TypeScript', level: 75 },
-  { name: 'Node.js', level: 80 },
-  { name: 'SQL', level: 70 },
+  { name: 'Python', level: 90 },
+  { name: 'PyTorch', level: 88 },
+  { name: 'Deep Learning', level: 85 },
+  { name: 'Computer Vision', level: 82 },
+  { name: 'React', level: 80 },
+  { name: 'OpenCV', level: 78 },
 ]
 
 const technologies = [
-  'React', 'Next.js', 'TypeScript', 'Python', 'TensorFlow', 'PostgreSQL',
-  'MongoDB', 'Git', 'Docker', 'AWS', 'Figma', 'Tailwind CSS',
+  'PyTorch', 'OpenCV', 'Python', 'NumPy', 'Scikit-Learn', 'TensorFlow',
+  'Computer Vision', 'Deep Learning', 'Biometrics', 'React', 'TypeScript',
+  'Git', 'Docker', 'Tailwind CSS',
 ]
 
 export default function About() {
@@ -51,8 +52,9 @@ export default function About() {
             >
               <p className="text-slate-600 mb-4">
                 I'm a B.Tech student at IIIT Kottayam with experience in full-stack web
-                development and React. I enjoy turning complex problems into elegant solutions
-                and have gained hands-on experience through internships and personal projects.
+                development, machine learning research, and computer vision. I enjoy turning
+                complex problems into elegant solutions and have gained hands-on experience
+                through research internships and personal projects.
               </p>
               <p className="text-slate-600">
                 I'm passionate about building scalable applications, learning new technologies,

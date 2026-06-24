@@ -1,18 +1,21 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Building2, Calendar, Code2, Sparkles, Briefcase } from 'lucide-react'
+import { Building2, Calendar, Code2, Sparkles, Briefcase, ArrowUpRight } from 'lucide-react'
 import { GlowingEffect } from '@/components/ui/glowing-effect'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 
 const experiences = [
   {
     title: 'Summer Research Intern',
     company: 'NIT Warangal',
     location: 'Warangal, Telangana',
-    period: 'May 2026 – Jul 2026 · Ongoing',
+    period: 'May 2026 – Jul 2026',
     description:
-      'May 2026 – Jul 2026 (ongoing). Machine learning research under Prof. Manish Kumar Bajpai, working on thermal imaging and image reconstruction.',
-    skills: ['Machine Learning', 'Thermal Imaging', 'Image Reconstruction', 'Python'],
-    current: true,
+      'Completed research internship under Prof. Manish Kumar Bajpai on dorsal hand vein biometric identification. Designed VeinFusionNet — a multi-feature fusion deep learning framework for robust cross-session identification using PyTorch.',
+    skills: ['PyTorch', 'Computer Vision', 'Deep Learning', 'Biometrics', 'OpenCV'],
+    completed: true,
+    workUrl: '/work/vein-fusion-net',
   },
   {
     title: 'Web Development Intern',
@@ -21,7 +24,7 @@ const experiences = [
     period: 'Aug 2025 – Nov 2025',
     description: 'Built scalable and optimized web applications using frontend and backend technologies. Worked with React.js and designed the VaultofCodes logo.',
     skills: ['React.js', 'Frontend', 'Backend', 'Logo Design'],
-    current: false,
+    completed: false,
   },
   {
     title: 'Web Development Intern',
@@ -30,49 +33,55 @@ const experiences = [
     period: 'Jun 2025 – Jul 2025',
     description: 'Developed responsive UIs using React. Managed state and props for component-based architecture.',
     skills: ['React', 'State Management', 'Component Architecture'],
-    current: false,
+    completed: false,
   },
 ]
 
-interface GridItemProps {
-  area: string
+interface ExperienceCardProps {
   icon: React.ReactNode
   title: string
   description: React.ReactNode
   children?: React.ReactNode
 }
 
-function GridItem({ area, icon, title, description, children }: GridItemProps) {
+function ExperienceCard({ icon, title, description, children }: ExperienceCardProps) {
   return (
-    <li className={`min-h-[14rem] list-none ${area}`}>
-      <GlowingEffect
-        spread={40}
-        glow={true}
-        disabled={false}
-        inactiveZone={0.01}
-      >
-        <div className="flex h-full flex-col gap-4 p-6">
-          <div className="flex flex-1 flex-col gap-3">
-            <div className="w-fit rounded-lg border border-slate-200 bg-slate-50/80 p-2 dark:border-slate-600 dark:bg-slate-800/50">
-              {icon}
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 md:text-2xl dark:text-white">
-                {title}
-              </h3>
-              <p className="font-sans text-sm leading-relaxed text-slate-600 md:text-base dark:text-slate-400">
-                {description}
-              </p>
-            </div>
+    <GlowingEffect spread={40} glow={true} disabled={false} inactiveZone={0.01}>
+      <div className="flex flex-col gap-4 p-6">
+        <div className="flex flex-col gap-3">
+          <div className="w-fit rounded-lg border border-slate-200 bg-slate-50/80 p-2 dark:border-slate-600 dark:bg-slate-800/50">
+            {icon}
           </div>
-          {children}
+          <div className="space-y-2">
+            <h3 className="font-sans text-xl font-semibold tracking-tight text-slate-900 md:text-2xl dark:text-white">
+              {title}
+            </h3>
+            <p className="font-sans text-sm leading-relaxed text-slate-600 md:text-base dark:text-slate-400">
+              {description}
+            </p>
+          </div>
         </div>
-      </GlowingEffect>
+        {children}
+      </div>
+    </GlowingEffect>
+  )
+}
+
+interface GridItemProps extends ExperienceCardProps {
+  area: string
+}
+
+function GridItem({ area, ...props }: GridItemProps) {
+  return (
+    <li className={`list-none ${area}`}>
+      <ExperienceCard {...props} />
     </li>
   )
 }
 
 export default function Experience() {
+  const nitInternship = experiences[0]
+
   return (
     <section id="experience" className="bg-white py-32 px-6">
       <div className="max-w-6xl mx-auto">
@@ -88,28 +97,43 @@ export default function Experience() {
           </h2>
         </motion.div>
 
-        {/* Glowing grid */}
         <motion.ul
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2"
+          className="grid grid-cols-1 items-start gap-4 md:grid-cols-12 md:auto-rows-auto lg:gap-4"
         >
           <GridItem
             area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
             icon={<Building2 className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
-            title={experiences[0].title + ' · ' + experiences[0].company}
-            description={experiences[0].description}
+            title={nitInternship.title + ' · ' + nitInternship.company}
+            description={nitInternship.description}
           >
-            <div className="flex flex-wrap items-center gap-2">
-              {experiences[0].current && (
-                <Badge className="bg-orange-500/10 text-orange-600 dark:text-orange-400">Ongoing</Badge>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                {nitInternship.completed && (
+                  <Badge className="bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+                    Completed · {nitInternship.period}
+                  </Badge>
+                )}
+                {nitInternship.skills.map((skill) => (
+                  <Badge key={skill} variant="secondary" className="text-slate-600 dark:text-slate-400">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+              {nitInternship.workUrl && (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-fit rounded-full border-orange-500/40 text-orange-600 hover:bg-orange-50 hover:text-orange-700 dark:text-orange-400 dark:hover:bg-orange-500/10"
+                >
+                  <Link to={nitInternship.workUrl}>
+                    View My Work
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </Button>
               )}
-              {experiences[0].skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="text-slate-600 dark:text-slate-400">
-                  {skill}
-                </Badge>
-              ))}
             </div>
           </GridItem>
 
@@ -144,18 +168,31 @@ export default function Experience() {
           </GridItem>
 
           <GridItem
-            area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
+            area="md:[grid-area:2/7/3/13] xl:hidden"
             icon={<Sparkles className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
             title="B.Tech @ IIIT Kottayam"
             description="Indian Institute of Information Technology, Kottayam. Currently based in Tamil Nadu."
           />
 
           <GridItem
-            area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
+            area="md:[grid-area:3/1/4/13] xl:hidden"
             icon={<Calendar className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
             title="Available for opportunities"
             description="Open to internships and full-time roles in full-stack development and ML. Get in touch via the contact form."
           />
+
+          <li className="hidden list-none xl:flex xl:flex-col xl:gap-4 xl:[grid-area:1/8/3/13]">
+            <ExperienceCard
+              icon={<Sparkles className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
+              title="B.Tech @ IIIT Kottayam"
+              description="Indian Institute of Information Technology, Kottayam. Currently based in Tamil Nadu."
+            />
+            <ExperienceCard
+              icon={<Calendar className="h-4 w-4 text-slate-700 dark:text-slate-300" />}
+              title="Available for opportunities"
+              description="Open to internships and full-time roles in full-stack development and ML. Get in touch via the contact form."
+            />
+          </li>
         </motion.ul>
       </div>
     </section>
