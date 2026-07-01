@@ -17,8 +17,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import { downloadResearchReport } from '@/lib/researchReport'
 import { downloadInternshipCertificate } from '@/lib/internshipCertificate'
 
-/** Place duo photo at public/SUPERVISOR_IMAGE.jpg */
-const SUPERVISOR_IMAGE = '/SUPERVISOR_IMAGE.jpg'
+/** Supervisor photo at public/SUPERVISOR_IMAGE.png (709×677) */
+const SUPERVISOR_IMAGE = '/SUPERVISOR_IMAGE.png'
+const SUPERVISOR_IMAGE_WIDTH = 709
+const SUPERVISOR_IMAGE_HEIGHT = 677
 
 const metrics = [
   { label: 'Cross-session accuracy', value: '66.72%', detail: 'Best optimized configuration' },
@@ -82,7 +84,7 @@ export default function VeinFusionNet() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <header className="border-b border-slate-800 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm font-medium shrink-0"
@@ -94,7 +96,7 @@ export default function VeinFusionNet() {
             <Button
               variant="outline"
               size="sm"
-              className="rounded-full border-slate-600 bg-transparent text-slate-200 hover:bg-slate-800 hover:text-white hidden sm:inline-flex"
+              className="rounded-full border-slate-600 bg-transparent text-slate-200 hover:bg-slate-800 hover:text-white"
               onClick={downloadInternshipCertificate}
             >
               <Award className="w-4 h-4" />
@@ -112,7 +114,7 @@ export default function VeinFusionNet() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -132,88 +134,79 @@ export default function VeinFusionNet() {
             </span>
           </h1>
 
-          {/* Research spotlight — duo photo with professor */}
+          {/* Research spotlight — cropped duo photo, stacked on mobile, side-by-side on desktop */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="relative mb-12 group"
+            className="relative mb-12"
           >
-            {/* Ambient glow behind frame */}
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-orange-500/20 via-transparent to-blue-500/10 blur-2xl opacity-60 pointer-events-none" />
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-orange-500/20 via-transparent to-blue-500/10 blur-2xl opacity-60 pointer-events-none hidden md:block" />
 
-            <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl shadow-black/50">
-              {/* Large duo photograph */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] min-h-[280px] sm:min-h-[340px] md:min-h-[380px]">
-                <img
-                  src={SUPERVISOR_IMAGE}
-                  alt="Yashwanth S with Dr. Manish Kumar Bajpai at NIT Warangal"
-                  className="absolute inset-0 w-full h-full object-cover object-center scale-100 group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                />
+            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl shadow-black/50 bg-slate-900">
+              <div className="flex flex-col lg:grid lg:grid-cols-[minmax(280px,44%)_1fr]">
+                {/* Photo — full portrait visible at all sizes */}
+                <div className="flex items-center justify-center bg-slate-800/40 p-4 sm:p-5 lg:p-6">
+                  <img
+                    src={SUPERVISOR_IMAGE}
+                    alt="Yashwanth S with Dr. Manish Kumar Bajpai at NIT Warangal"
+                    width={SUPERVISOR_IMAGE_WIDTH}
+                    height={SUPERVISOR_IMAGE_HEIGHT}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full max-w-md lg:max-w-none h-auto max-h-[50vh] sm:max-h-[55vh] lg:max-h-[420px] object-contain object-center rounded-xl lg:rounded-2xl"
+                  />
+                </div>
 
-                {/* Layered gradients for depth + readable overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-transparent to-transparent md:max-w-[55%]" />
-
-                {/* Corner accents */}
-                <div className="absolute top-5 left-5 w-12 h-12 border-t-2 border-l-2 border-orange-500/80 rounded-tl-lg pointer-events-none" />
-                <div className="absolute bottom-5 right-5 w-12 h-12 border-b-2 border-r-2 border-orange-500/80 rounded-br-lg pointer-events-none" />
-
-                {/* Top ribbon */}
-                <div className="absolute top-5 right-5 sm:top-6 sm:right-6">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/70 backdrop-blur-md border border-slate-600/60 text-xs sm:text-sm text-slate-200">
+                {/* Supervisor info + actions */}
+                <div className="flex flex-col justify-center gap-5 p-5 sm:p-6 lg:p-8 border-t lg:border-t-0 lg:border-l border-slate-700/80">
+                  <span className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-600/60 text-xs sm:text-sm text-slate-200">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     Summer Research · 2026
                   </span>
-                </div>
 
-                {/* Overlay content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
-                    <div className="max-w-2xl">
-                      <p className="text-orange-400 text-sm font-medium tracking-wide uppercase mb-2">
-                        With my research supervisor
+                  <div>
+                    <p className="text-orange-400 text-xs sm:text-sm font-medium tracking-wide uppercase mb-1.5">
+                      With my research supervisor
+                    </p>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-2">
+                      Dr. Manish Kumar Bajpai
+                    </h2>
+                    <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-3">
+                      Associate Professor, Department of Computer Science & Engineering
+                    </p>
+                    <div className="flex items-start gap-2.5 text-slate-200">
+                      <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 shrink-0 mt-0.5" />
+                      <p className="text-sm sm:text-base font-medium">
+                        National Institute of Technology (NIT) Warangal
                       </p>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-3">
-                        Dr. Manish Kumar Bajpai
-                      </h2>
-                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
-                        Associate Professor, Department of Computer Science & Engineering
-                      </p>
-                      <div className="flex items-start gap-3 text-slate-200">
-                        <GraduationCap className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
-                        <p className="text-sm sm:text-base font-medium">
-                          National Institute of Technology (NIT) Warangal
-                        </p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl bg-slate-800/60 border border-slate-700/60 p-4 sm:p-5">
+                    <div className="flex items-center gap-3 mb-4 pb-3 border-b border-slate-700/80">
+                      <Microscope className="w-5 h-5 text-orange-500 shrink-0" />
+                      <div>
+                        <p className="text-xs text-slate-400">Research focus</p>
+                        <p className="text-sm font-medium text-white">VeinFusionNet · Biometrics</p>
                       </div>
                     </div>
-
-                    {/* Glass action panel */}
-                    <div className="shrink-0 w-full lg:w-auto lg:min-w-[260px] rounded-2xl bg-slate-950/75 backdrop-blur-xl border border-slate-600/50 p-5 shadow-xl">
-                      <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-700/80">
-                        <Microscope className="w-5 h-5 text-orange-500 shrink-0" />
-                        <div>
-                          <p className="text-xs text-slate-400">Research focus</p>
-                          <p className="text-sm font-medium text-white">VeinFusionNet · Biometrics</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                        <Button
-                          variant="outline"
-                          className="w-full rounded-full border-slate-500 bg-slate-800/60 text-slate-100 hover:bg-slate-700 hover:text-white"
-                          onClick={downloadInternshipCertificate}
-                        >
-                          <Award className="w-4 h-4" />
-                          Download Certificate
-                        </Button>
-                        <Button
-                          className="w-full rounded-full bg-orange-500 hover:bg-orange-600 text-white"
-                          onClick={downloadResearchReport}
-                        >
-                          <Download className="w-4 h-4" />
-                          Download Report
-                        </Button>
-                      </div>
+                    <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-full border-slate-500 bg-slate-800/80 text-slate-100 hover:bg-slate-700 hover:text-white"
+                        onClick={downloadInternshipCertificate}
+                      >
+                        <Award className="w-4 h-4" />
+                        Download Certificate
+                      </Button>
+                      <Button
+                        className="w-full rounded-full bg-orange-500 hover:bg-orange-600 text-white"
+                        onClick={downloadResearchReport}
+                      >
+                        <Download className="w-4 h-4" />
+                        Download Report
+                      </Button>
                     </div>
                   </div>
                 </div>
